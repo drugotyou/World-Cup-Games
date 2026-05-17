@@ -126,6 +126,22 @@ html[data-theme=light] .sk{-webkit-text-stroke-width:1px}
 .stat{background:var(--surface);padding:16px 18px;backdrop-filter:blur(8px)}
 .stat-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1;color:var(--ink)}
 .stat-l{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);margin-top:2px;font-weight:600}
+/* ── GROUPS FULL-WIDTH BUTTON ── */
+.groups-full-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;
+  margin-top:10px;
+  padding:11px 18px;
+  border-radius:var(--radius);
+  background:var(--surface);
+  border:1px solid var(--border2);
+  font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  backdrop-filter:blur(10px);
+  transition:transform .2s,background .2s;
+}
+.groups-full-btn:hover{transform:translateY(-1px);background:var(--surface2)}
+.groups-full-btn svg{width:15px;height:15px;flex-shrink:0}
+
 @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
 
 /* ── TZ TOGGLE (sticky) ── */
@@ -574,6 +590,7 @@ footer .sep{opacity:.3;margin:0 6px}
   padding:7px 8px;border-radius:8px;
   font-size:.84rem;color:var(--ink);font-weight:500;
   transition:background .15s;
+  cursor:pointer;
 }
 .group-team:hover{background:var(--surface2)}
 .group-team-flag{font-size:1.15rem;line-height:1;flex-shrink:0;width:22px;text-align:center}
@@ -658,10 +675,6 @@ footer .sep{opacity:.3;margin:0 6px}
     <div class="hdr-top">
       <div class="brand"><span class="dot"></span>Tournament Schedule · 2026</div>
       <div class="hdr-actions">
-        <button id="groupsBtn" class="theme-btn" aria-label="View all groups" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>
-          <span>Groups</span>
-        </button>
         <button id="themeBtn" class="theme-btn" aria-label="Toggle theme">
           <svg id="iMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg id="iSun" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -703,6 +716,12 @@ footer .sep{opacity:.3;margin:0 6px}
       <div class="stat"><div class="stat-n">48</div><div class="stat-l">Teams</div></div>
       <div class="stat"><div class="stat-n">39</div><div class="stat-l">Days</div></div>
     </div>
+
+    <button id="groupsBtn" class="groups-full-btn" aria-label="View all groups" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>
+      <span>Groups</span>
+    </button>
+
   </header>
 
   <!-- TZ TOGGLE BAR (sticky) -->
@@ -1549,7 +1568,7 @@ function renderGroups(){
     teams.forEach(function(t){
       var flag=FLAGS[t]||'🏳️';
       var hostTag=HOST_NAMES[t]?'<span class="group-host-tag">Host</span>':'';
-      html+='<div class="group-team"><span class="group-team-flag">'+flag+'</span><span class="group-team-name">'+esc(t)+'</span>'+hostTag+'</div>';
+      html+='<div class="group-team" role="button" tabindex="0" onclick="selectTeamFromGroup(\'' + t.replace(/'/g,"\\\\'")+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \')selectTeamFromGroup(\'' + t.replace(/'/g,"\\\\'")+'\')" ><span class="group-team-flag">'+flag+'</span><span class="group-team-name">'+esc(t)+'</span>'+hostTag+'</div>';
     });
     html+='</div></div>';
   });
@@ -1564,6 +1583,15 @@ function closeGroups(){
   document.getElementById('groupsModal').classList.remove('open');
   document.body.style.overflow='';
 }
+function selectTeamFromGroup(teamName){
+  closeGroups();
+  state.query = teamName;
+  state.day   = null;
+  var inp = document.getElementById('searchInput');
+  if(inp){ inp.value = teamName; }
+  render();
+}
+
 function updateStageCounts(){
   var tally={all:0,group:0,r32:0,r16:0,qf:0,sf:0,final:0};
   M.forEach(function(m){
