@@ -84,4 +84,83 @@ nav span{font-size:11px;color:#c9c4e6;text-align:center;cursor:pointer;padding:6
 <div class="screen bgfx" id="invite"><div class="top"><div class="rb" data-go="cap">‹</div></div><h2>Invite</h2><p class="sub">Guests scan to join and upload from the browser. No app needed.</p><div class="qr" id="qr"></div>
 <button class="btn" data-act="copy">Copy invite link</button>
 <h2 style="margin-top:20px;font-size:16px">Other ways to add content</h2>
-<div class="card"><b>📲 Share sheet</b><small>
+<div class="card"><b>📲 Share sheet</b><small>Save a Snap or Story, then Share → Capsule</small></div>
+<div class="card"><b>🖼 Camera-roll suggest</b><small>Auto-pick photos from the event window</small></div>
+<div class="card"><b>📴 Offline-safe</b><small>Uploads queue and sync when signal returns</small></div>
+<div class="card"><b>✉️ Email drop</b><small>ibiza-7x2@capsule.app</small></div></div>
+
+<div class="screen bgfx" id="settings"><div class="top"><div class="rb" data-go="cap">‹</div></div><h2>Reminders</h2>
+<p class="sub">We'll remind you even if you delete the app. Every email has a magic link to open the capsule.</p>
+<div class="tg"><span>📧 Email<br><small style="color:#d4cff0">you@email.com · required</small></span><div class="sw on" style="opacity:.6"></div></div>
+<div class="tg"><span>💬 SMS / WhatsApp<br><small style="color:#d4cff0">+44 7... (optional)</small></span><div class="sw on" data-sw="1"></div></div>
+<div class="tg"><span>🔔 Push notifications</span><div class="sw on" data-sw="1"></div></div>
+<div class="tg"><span>📤 Upload nudges<br><small style="color:#d4cff0">Max 3 per capsule</small></span><div class="sw on" data-sw="1"></div></div>
+<div class="tg"><span>📅 Yearly check-in<br><small style="color:#d4cff0">For capsules sealed 1+ year</small></span><div class="sw on" data-sw="1"></div></div>
+<div class="tg"><span>🛟 Backup contact<br><small style="color:#d4cff0">Add a partner's email</small></span><div class="va" data-act="backup">Add</div></div>
+<h3 style="margin:20px 0 4px">What you'll get</h3><div class="tl">
+<div><b>On joining</b><small>Email · "Sealed until 12 Oct 2027"</small></div>
+<div><b>7 days before upload deadline</b><small>Push + email · "Add your best shots"</small></div>
+<div><b>48 hours before deadline</b><small>Push + email · "2 days left to upload"</small></div>
+<div><b>Final day</b><small>All channels · "Last call, capsule locks tonight"</small></div>
+<div><b>30 days before unlock</b><small>Push + email</small></div>
+<div><b>7 days before unlock</b><small>Push, email, SMS</small></div>
+<div><b>24 hours before unlock</b><small>All channels</small></div>
+<div><b>Unlock day</b><small>All channels · magic link</small></div>
+<div><b>3 days after</b><small>Email · "You haven't opened it yet"</small></div></div></div>
+
+<div class="screen bgfx" id="gallery"><div class="top"><div class="rb" data-go="home">‹</div></div><h2>🔓 Unlocked!</h2><p class="sub">Everyone can now see all the memories.</p>
+<div class="card" style="cursor:default"><b>✨ AI curation done</b><small>24 best shots picked · 31 duplicates &amp; blurry hidden</small></div>
+<div class="chips" id="ft"><div class="chip on" data-f="all">All 96</div><div class="chip" data-f="best">Best of</div><div class="chip" data-f="vid">Videos</div></div>
+<div class="grid" id="gg"></div>
+<button class="btn" data-go="video">🎬 Watch memory video</button><button class="btn ghost" data-act="book">📖 Order photo book</button></div>
+
+<div class="screen bgfx" id="video"><div class="top"><div class="rb" data-go="gallery">‹</div></div><h2>Memory video</h2>
+<div class="video"><div class="t" id="vt">Tap play</div></div><div class="bar"><div id="pb"></div></div>
+<button class="btn" data-act="play">▶ Play</button><button class="btn ghost" data-act="share">Share to Instagram / Snap</button></div>
+
+<nav><span data-go="home"><i>🏠</i>Home</span><span data-go="create"><i>➕</i>New</span><span data-go="settings"><i>🔔</i>Reminders</span><span data-act="unlocked"><i>🎞</i>Memories</span></nav></div>
+<script>
+window.onerror=function(m,s,l){var e=document.getElementById('err');e.style.display='block';e.textContent='JS error: '+m+' (line '+l+')'};
+var $=function(id){return document.getElementById(id)};
+var cols=['#6c4cf1','#f14c9a','#f1a44c','#4cc9f1','#7dffb0','#c04cf1','#f1e24c','#4c6cf1','#f14c4c'];
+var people=[['Ben','B',4],['Jay','J',12],['Marco','M',0],['Luca','L',7],['Sam','S',0],['Dan','D',19],['Alex','A',3],['Rio','R',0]];
+var caps=[['Ibiza Boys Trip','🌴',372],['Sarah &amp; Tom Wedding','💍',365]];
+var comments=[['Jay','J','Cannot wait to see the sunset one 😂','2h ago'],['Dan','D','Added 19 already, uploading the rest tonight','1h ago'],['Luca','L','Who has the boat video??','35m ago']];
+var joined=false,online=true,q=0,days=372,pt;
+function go(s){var a=document.querySelectorAll('.screen');for(var i=0;i<a.length;i++)a[i].classList.remove('on');$(s).classList.add('on');$(s).scrollTop=0;$('pill').classList.toggle('show',s==='cap');if(s==='members')members()}
+function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');setTimeout(function(){e.classList.remove('on')},2000)}
+function fill(id,n){var x='';for(var i=0;i<n;i++)x+='<div style="background:linear-gradient('+(i*40)+'deg,'+cols[i%9]+','+cols[(i+3)%9]+')"></div>';$(id).innerHTML=x}
+function av(c,l,sz){return '<div class="av" style="background:'+cols[c%9]+';'+(sz?'width:'+sz+'px;height:'+sz+'px':'')+'">'+l+'</div>'}
+function ql(){$('qline').textContent='Offline queue: '+q+' · '+(online?'syncing instantly':'will sync when signal returns')}
+function tick(){$('d').textContent=days;$('h').textContent=23-new Date().getHours();$('m').textContent=59-new Date().getMinutes()}
+function avatars(){$('avs').innerHTML=people.slice(0,6).map(function(p,i){return av(i,p[1],60)}).join('')+'<div class="av" style="width:60px;height:60px;background:#ffffff33">+84</div>'}
+function wall(){var w=$('wall');
+ if(!joined){w.innerHTML='<div class="lockbox">🔒 The wall is for members only.<br>Join to chat with the group and add memories.</div>';return}
+ w.innerHTML=comments.map(function(c){return '<div class="cm">'+av(c[1].charCodeAt(0),c[1],38)+'<div class="bub"><b>'+c[0]+'</b><br>'+c[2]+'<small>'+c[3]+'</small></div></div>'}).join('')+'<input id="ci" placeholder="Write a comment (text only)..."><button class="btn ghost" data-act="post">Post</button>';
+ bind(w);$('ci').addEventListener('keydown',function(e){if(e.key==='Enter')post()})}
+function post(){var v=$('ci').value.trim();if(!v)return;comments.push(['You','Y',v.replace(/</g,'&lt;'),'now']);wall()}
+function pill(){$('pill').innerHTML=joined?'<span data-act="add">📷 Add memory</span><i></i><span data-go="settings">🔔 Reminders</span>':'<span data-act="join">🤘 Join</span><i></i><span data-act="interested">☆ Interested</span>';bind($('pill'))}
+function openCap(i){days=caps[i][2];$('ct').innerHTML=caps[i][1]+' '+caps[i][0];fill('bg',9);avatars();online=true;q=0;joined=false;$('net').textContent='📶 Online';$('net').classList.remove('on');ql();tick();pill();wall();go('cap')}
+function toggleNet(){online=!online;var e=$('net');e.textContent=online?'📶 Online':'✈️ Offline';e.classList.toggle('on',!online);if(online&&q>0){$('n').textContent=+$('n').textContent+q;toast(q+' queued memories synced ☁️');q=0}ql()}
+function addPhoto(){if(online){$('n').textContent=+$('n').textContent+1;toast('Memory encrypted & backed up 🔐')}else{q++;toast('No signal: saved to offline queue 📥');ql()}}
+function members(){$('mlist').innerHTML=people.map(function(p,i){return '<div class="mem">'+av(i,p[1])+'<div class="i"><b>'+p[0]+'</b><small>'+(p[2]?p[2]+' memories added':'Nothing added yet')+'</small></div>'+(p[2]?'<span>✅</span>':'<button class="nudge" data-act="nudge" data-n="'+p[0]+'">Nudge</button>')+'</div>'}).join('');bind($('mlist'))}
+function unlocked(){fill('gg',24);go('gallery')}
+function create(){var n=$('nm').value||'New Capsule',d=$('dt').value,k=30;if(d)k=Math.max(1,Math.ceil((new Date(d)-new Date())/864e5));caps[0]=[n,'✨',k];openCap(0);toast('Capsule sealed 🔒')}
+function play(){var L=['Day 1 ✈️','The boys arrive','Sunset vibes 🌅','Dinner chaos 🍽','Best night ever 🎉','See you next year ❤️'],p=0;clearInterval(pt);pt=setInterval(function(){p+=2;$('pb').style.width=p+'%';$('vt').textContent=L[Math.min(5,Math.floor(p/17))];if(p>=100)clearInterval(pt)},100)}
+var acts={unlocked:unlocked,create:create,post:post,play:play,net:toggleNet,add:addPhoto,
+ join:function(){joined=true;$('gc').textContent=+$('gc').textContent+1;pill();wall();toast('You are in! 🔓 Wall unlocked');setTimeout(function(){toast('Reminders set to your email 📧')},2200)},
+ interested:function(){$('uc').textContent=+$('uc').textContent+1;toast('Marked interested ⭐')},
+ nudgeAll:function(){toast('Nudges sent to '+people.filter(function(p){return !p[2]}).length+' people 🔔')},
+ nudge:function(el){toast('Nudge sent to '+el.getAttribute('data-n')+' 📧')},
+ copy:function(){toast('Link copied')},backup:function(){toast('Backup contact added')},book:function(){toast('Photo book coming soon')},share:function(){toast('Shared!')}};
+function handle(t){
+ if(t.hasAttribute('data-open'))return openCap(+t.getAttribute('data-open'));
+ if(t.hasAttribute('data-act'))return acts[t.getAttribute('data-act')](t);
+ if(t.hasAttribute('data-go'))return go(t.getAttribute('data-go'))}
+function bind(root){var a=root.querySelectorAll('[data-open],[data-go],[data-act]');for(var i=0;i<a.length;i++){if(a[i]._b)continue;a[i]._b=1;(function(el){el.addEventListener('click',function(e){e.stopPropagation();handle(el)})})(a[i])}
+ var s=root.querySelectorAll('[data-sw]');for(i=0;i<s.length;i++){if(s[i]._b)continue;s[i]._b=1;(function(el){el.addEventListener('click',function(){el.classList.toggle('on')})})(s[i])}
+ var c=root.querySelectorAll('#types .chip,#pre .chip,#ft .chip');for(i=0;i<c.length;i++){if(c[i]._b)continue;c[i]._b=1;(function(ch){ch.addEventListener('click',function(){var g=ch.parentNode,k=g.querySelectorAll('.chip');for(var j=0;j<k.length;j++)k[j].classList.remove('on');ch.classList.add('on');
+  if(g.id==='pre')$('dt').value=new Date(Date.now()+ch.getAttribute('data-d')*864e5).toISOString().slice(0,10);
+  if(g.id==='ft')fill('gg',{all:24,best:9,vid:6}[ch.getAttribute('data-f')])})})(c[i])}}
+(function(){var x='';for(var i=0;i<100;i++)x+='<div style="background:'+(Math.random()>.5?'#14122b':'#fff')+'"></div>';$('qr').innerHTML=x;bind(document);pill()})();
+</script></body></html>
