@@ -1,16 +1,16 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Capsule Prototype v3</title>
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Capsule Prototype v3.1</title><style>
 *{box-sizing:border-box;margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
 body{background:#0d0b1f;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:16px}
 .phone{width:380px;height:780px;background:#14122b;border-radius:40px;border:8px solid #000;overflow:hidden;position:relative;color:#fff;box-shadow:0 20px 60px #6c4cf155}
-.screen{display:none;height:100%;overflow-y:auto;padding:22px 20px 150px;background:#14122b}.screen.on{display:block}
+.screen{display:none;height:100%;overflow-y:auto;padding:22px 20px 160px;background:#14122b}.screen.on{display:block}
 .bgfx{background:radial-gradient(circle at 20% 0%,#f6d58a 0,transparent 35%),radial-gradient(circle at 90% 30%,#c0392b 0,transparent 45%),radial-gradient(circle at 20% 60%,#c04c9a 0,transparent 50%),#3a1d4a}
 h1{font-size:26px}h2{font-size:20px;margin-bottom:12px}p.sub{color:#cfc9ee;font-size:13px;margin:4px 0 12px}
-.card{background:#ffffff1c;border-radius:18px;padding:16px;margin-bottom:12px;cursor:pointer;backdrop-filter:blur(8px)}
+.card{background:#ffffff1c;border-radius:18px;padding:16px;margin-bottom:12px;cursor:pointer}
 .card b{display:block;font-size:16px}.card small{color:#d4cff0}
 .btn{background:linear-gradient(135deg,#6c4cf1,#c04cf1);border:0;color:#fff;padding:14px;border-radius:14px;width:100%;font-size:15px;font-weight:600;cursor:pointer;margin-top:8px}
 .btn.ghost{background:#ffffff22}
-input,select,textarea{width:100%;padding:12px;border-radius:12px;border:0;background:#ffffff1f;color:#fff;margin-bottom:10px;font-size:14px}
+input,select{width:100%;padding:12px;border-radius:12px;border:0;background:#ffffff1f;color:#fff;margin-bottom:10px;font-size:14px}
+select option{color:#000}
 input::placeholder{color:#c9c4e6}
 label{font-size:12px;color:#d4cff0;display:block;margin-bottom:4px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.chip{padding:8px 12px;border-radius:20px;background:#ffffff1f;font-size:12px;cursor:pointer}.chip.on{background:#6c4cf1}
@@ -18,13 +18,13 @@ label{font-size:12px;color:#d4cff0;display:block;margin-bottom:4px}
 .host{display:flex;align-items:center;gap:12px;margin:8px 0 18px}.av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:none}
 .row{display:flex;gap:12px;align-items:center;margin:14px 0}.row .ic{font-size:20px}
 .title{font-size:24px;font-weight:700;margin:16px 0 4px}
-.desc{font-size:15px;line-height:1.5;margin:14px 0;color:#fff}
+.desc{font-size:15px;line-height:1.5;margin:14px 0}
 .count{display:flex;gap:8px;margin:12px 0}.count div{background:#ffffff22;border-radius:14px;padding:10px;min-width:64px;text-align:center}.count b{font-size:22px;display:block}.count small{color:#ddd;font-size:11px}
 .gl{display:flex;justify-content:space-between;align-items:center;margin-top:22px}.gl h3{font-size:20px}.gl span.m{background:#fff;color:#14122b;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:600;margin-left:8px}
 .va{background:#ffffff25;border:1px solid #fff4;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:14px}
 .avs{display:flex;gap:8px;margin:12px 0;overflow-x:auto}
-.pill{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);background:#fff;color:#14122b;border-radius:30px;display:flex;padding:14px 22px;gap:18px;font-weight:700;font-size:16px;box-shadow:0 8px 30px #0006;z-index:5;white-space:nowrap}
-.pill span{cursor:pointer}.pill i{width:1px;background:#bbb}
+.pill{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);background:#fff;color:#14122b;border-radius:30px;display:none;padding:14px 22px;gap:18px;font-weight:700;font-size:16px;box-shadow:0 8px 30px #0006;z-index:8;white-space:nowrap}
+.pill.show{display:flex}.pill span{cursor:pointer}.pill i{width:1px;background:#bbb}
 .cm{display:flex;gap:10px;margin:12px 0}.cm .bub{background:#ffffff1c;border-radius:14px;padding:10px 12px;font-size:14px;flex:1}.cm small{color:#d4cff0;display:block;font-size:11px;margin-top:2px}
 .lockbox{background:#ffffff14;border:1px dashed #fff5;border-radius:16px;padding:16px;text-align:center;font-size:13px;color:#e0dcf5}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.grid div{aspect-ratio:1;border-radius:8px}.blur div{filter:blur(8px)}
@@ -37,17 +37,16 @@ label{font-size:12px;color:#d4cff0;display:block;margin-bottom:4px}
 .tl{border-left:2px solid #ffffff44;margin:10px 0 0 8px;padding-left:16px}.tl div{margin-bottom:14px;font-size:13px;position:relative}.tl div::before{content:"";position:absolute;left:-23px;top:3px;width:10px;height:10px;border-radius:50%;background:#c04cf1}.tl b{display:block}.tl small{color:#d4cff0}
 .mem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #ffffff1f}.mem .i{flex:1;font-size:14px}.mem small{color:#d4cff0;display:block}
 .nudge{background:#fff;color:#14122b;border:0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
-nav{position:absolute;bottom:0;left:0;right:0;height:62px;background:#0d0b1fee;display:flex;justify-content:space-around;align-items:center;z-index:6}
+nav{position:absolute;bottom:0;left:0;right:0;height:62px;background:#0d0b1f;display:flex;justify-content:space-around;align-items:center;z-index:6}
 nav span{font-size:11px;color:#c9c4e6;text-align:center;cursor:pointer}nav i{display:block;font-style:normal;font-size:20px}
 .toast{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#fff;color:#14122b;padding:10px 16px;border-radius:20px;font-size:13px;opacity:0;transition:.3s;z-index:20;white-space:nowrap;pointer-events:none}.toast.on{opacity:1}
 </style></head><body>
 <div class="phone"><div class="toast" id="toast"></div>
-
 <div class="screen bgfx on" id="home"><h1>Capsule</h1><p class="sub">Private. Offline-safe. Sealed until you say.</p>
-<div class="card" onclick="openCap(0)"><b>🌴 Ibiza Boys Trip</b><small>Opens 12 Oct 2027 · 90 on the list · 128 memories</small></div>
-<div class="card" onclick="openCap(1)"><b>💍 Sarah &amp; Tom Wedding</b><small>Opens on 1st anniversary · 64 guests · 412 memories</small></div>
-<div class="card" onclick="unlocked()"><b>🎂 Mike's 30th</b><small style="color:#7dffb0">Unlocked · 96 memories · tap to view</small></div>
-<button class="btn" onclick="go('create')">+ New capsule</button></div>
+<div class="card" data-open="0"><b>🌴 Ibiza Boys Trip</b><small>Opens 12 Oct 2027 · 90 on the list · 128 memories</small></div>
+<div class="card" data-open="1"><b>💍 Sarah &amp; Tom Wedding</b><small>Opens on 1st anniversary · 64 guests · 412 memories</small></div>
+<div class="card" data-act="unlocked"><b>🎂 Mike's 30th</b><small style="color:#7dffb0">Unlocked · 96 memories · tap to view</small></div>
+<button class="btn" data-go="create">+ New capsule</button></div>
 
 <div class="screen bgfx" id="create"><h2>New capsule</h2>
 <label>Name</label><input id="nm" placeholder="e.g. Dubai Weekend">
@@ -56,10 +55,10 @@ nav span{font-size:11px;color:#c9c4e6;text-align:center;cursor:pointer}nav i{dis
 <label>Unlock date</label><input type="date" id="dt">
 <label>Upload deadline</label><input type="date" id="dl">
 <label>Who can join?</label><select><option>Anyone with the link</option><option>Invited only</option></select>
-<button class="btn" onclick="create()">Seal &amp; create 🔒</button><button class="btn ghost" onclick="go('home')">Cancel</button></div>
+<button class="btn" data-act="create">Seal &amp; create 🔒</button><button class="btn ghost" data-go="home">Cancel</button></div>
 
 <div class="screen bgfx" id="cap">
-<div class="top"><div class="rb" onclick="go('home')">‹</div><div style="display:flex;gap:8px"><div class="rb" onclick="go('invite')">➦</div><div class="rb" onclick="go('settings')">⋯</div></div></div>
+<div class="top"><div class="rb" data-go="home">‹</div><div style="display:flex;gap:8px"><div class="rb" data-go="invite">➦</div><div class="rb" data-go="settings">⋯</div></div></div>
 <p class="sub" style="margin:0">Hosted by</p>
 <div class="host"><div class="av" style="background:#fff;color:#14122b">B</div><b style="font-size:18px">Benjamin</b></div>
 <div class="row"><span class="ic">📍</span><div><b>Ibiza, Spain</b><br><small style="color:#ddd">Trip 3–7 Oct · memories sealed</small></div></div>
@@ -67,21 +66,23 @@ nav span{font-size:11px;color:#c9c4e6;text-align:center;cursor:pointer}nav i{dis
 <div style="font-size:15px">Opens Tuesday 12 October 2027 · 12:00</div>
 <div class="count"><div><b id="d">0</b><small>days</small></div><div><b id="h">0</b><small>hours</small></div><div><b id="m">0</b><small>mins</small></div></div>
 <div class="desc">Everyone adds their best shots from the trip. Nothing is visible until unlock day, then you get the full gallery and a memory film.<br><br>Upload deadline: <b>Sun 10 Oct, 23:00</b>. Add your photos before the capsule locks.</div>
-<div class="chips"><div class="chip on">🔐 End-to-end encrypted</div><div class="chip on">☁️ Auto-backup</div><div class="chip" id="net" onclick="toggleNet()">📶 Online</div></div>
+<div class="chips"><div class="chip on">🔐 End-to-end encrypted</div><div class="chip on">☁️ Auto-backup</div><div class="chip" id="net" data-act="net">📶 Online</div></div>
 <p class="sub" id="qline"></p>
-<div class="gl"><div style="display:flex;align-items:center"><h3>Guest List</h3><span class="m">👥 1 Mutual</span></div><div class="va" onclick="go('members')">View all</div></div>
+<div class="gl"><div style="display:flex;align-items:center"><h3>Guest List</h3><span class="m">👥 1 Mutual</span></div><div class="va" data-go="members">View all</div></div>
 <p class="sub" style="margin-top:2px"><span id="gc">8</span> on the list · <span id="uc">3</span> interested · <span id="n">128</span> memories sealed</p>
 <div class="avs" id="avs"></div>
 <div class="grid blur" id="bg" style="margin-top:6px"></div>
 <div class="title" style="font-size:20px;margin-top:22px">Wall</div>
-<div id="wall"></div>
-<div style="height:30px"></div>
-<div class="pill" id="pill"><span onclick="joinCap()">🤘 Join</span><i></i><span onclick="interested()">☆ Interested</span></div></div>
+<div id="wall"></div></div>
 
-<div class="screen bgfx" id="members"><div class="top"><div class="rb" onclick="go('cap')">‹</div></div><h2>Guest list</h2><p class="sub">Host view: see who has added memories and nudge the rest. Content stays sealed.</p>
-<div id="mlist"></div><button class="btn" onclick="nudgeAll()">🔔 Nudge everyone who hasn't uploaded</button></div>
+<div class="pill" id="pill"></div>
 
-<div class="screen bgfx" id="invite"><div class="top"><div class="rb" onclick="go('cap')">‹</div></div><h2>Invite</h2><p class="sub">Guests scan to join and upload from the browser. No app needed.</p><div class="qr" id="qr"></div>
-<button class="btn" onclick="toast('Link copied')">Copy invite link</button>
+<div class="screen bgfx" id="members"><div class="top"><div class="rb" data-go="cap">‹</div></div><h2>Guest list</h2><p class="sub">Host view: see who has added memories and nudge the rest. Content stays sealed.</p>
+<div id="mlist"></div><button class="btn" data-act="nudgeAll">🔔 Nudge everyone who hasn't uploaded</button></div>
+
+<div class="screen bgfx" id="invite"><div class="top"><div class="rb" data-go="cap">‹</div></div><h2>Invite</h2><p class="sub">Guests scan to join and upload from the browser. No app needed.</p><div class="qr" id="qr"></div>
+<button class="btn" data-act="copy">Copy invite link</button>
 <h2 style="margin-top:20px;font-size:16px">Other ways to add content</h2>
-<div class="card"><b>📲 Share sheet</b><small>
+<div class="card"><b>📲 Share sheet</b><small>Save a Snap or Story, then Share → Capsule</small></div>
+<div class="card"><b>🖼 Camera-roll suggest</b><small>Auto-pick photos from the event window</small></div>
+<div class="card"><b>📴 Offline-safe</b><small>U
