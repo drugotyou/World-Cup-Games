@@ -1,166 +1,220 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Capsule Prototype</title><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Capsule</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#14122b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Capsule"><link rel="apple-touch-icon" href="icon-192.png"><style>
 *{box-sizing:border-box;margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;-webkit-tap-highlight-color:transparent}
 body{background:#0d0b1f;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:16px}
 .phone{width:380px;max-width:100%;height:780px;background:#14122b;border-radius:40px;border:8px solid #000;overflow:hidden;position:relative;color:#fff;box-shadow:0 20px 60px #6c4cf155}
-.screen{display:none;height:100%;overflow-y:auto;padding:22px 20px 160px;background:#14122b}.screen.on{display:block}
+@media(max-width:500px){body{padding:0;display:block}.phone{width:100vw;height:100vh;height:100dvh;border:0;border-radius:0;box-shadow:none}}
+.screen{display:none;height:100%;overflow-y:auto;padding:22px 20px 170px;background:#14122b}.screen.on{display:block}
 .bgfx{background:radial-gradient(circle at 20% 0%,#f6d58a 0,transparent 35%),radial-gradient(circle at 90% 30%,#c0392b 0,transparent 45%),radial-gradient(circle at 20% 60%,#c04c9a 0,transparent 50%),#3a1d4a}
-h1{font-size:26px}h2{font-size:20px;margin-bottom:12px}p.sub{color:#cfc9ee;font-size:13px;margin:4px 0 12px}
-.card{background:#ffffff1c;border-radius:18px;padding:16px;margin-bottom:12px;cursor:pointer}
-.card b{display:block;font-size:16px}.card small{color:#d4cff0}
-.btn{background:linear-gradient(135deg,#6c4cf1,#c04cf1);border:0;color:#fff;padding:14px;border-radius:14px;width:100%;font-size:15px;font-weight:600;cursor:pointer;margin-top:8px}
+h1{font-size:26px}h2{font-size:20px;margin-bottom:12px}h3{font-size:18px}p.sub{color:#e0dcf5;font-size:13px;margin:4px 0 12px}
+[data-a]{cursor:pointer}
+.card{background:#ffffff1c;border-radius:18px;padding:16px;margin-bottom:12px}
+.card b{display:block;font-size:16px}.card small{color:#e0dcf5}
+.btn{background:linear-gradient(135deg,#6c4cf1,#c04cf1);border:0;color:#fff;padding:14px;border-radius:14px;width:100%;font-size:15px;font-weight:600;margin-top:8px}
 .btn.ghost{background:#ffffff22}
-input,select{width:100%;padding:12px;border-radius:12px;border:0;background:#ffffff1f;color:#fff;margin-bottom:10px;font-size:16px}
-select option{color:#000}
-input::placeholder{color:#c9c4e6}
-label{font-size:12px;color:#d4cff0;display:block;margin-bottom:4px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.chip{padding:8px 12px;border-radius:20px;background:#ffffff1f;font-size:12px;cursor:pointer}.chip.on{background:#6c4cf1}
-.top{display:flex;justify-content:space-between;margin-bottom:14px}.rb{width:38px;height:38px;border-radius:50%;background:#ffffff25;border:1px solid #fff5;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px}
-.host{display:flex;align-items:center;gap:12px;margin:8px 0 18px}.av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:none}
-.row{display:flex;gap:12px;align-items:center;margin:14px 0}.row .ic{font-size:20px}
-.title{font-size:24px;font-weight:700;margin:16px 0 4px}
-.desc{font-size:15px;line-height:1.5;margin:14px 0}
-.count{display:flex;gap:8px;margin:12px 0}.count div{background:#ffffff22;border-radius:14px;padding:10px;min-width:64px;text-align:center}.count b{font-size:22px;display:block}.count small{color:#ddd;font-size:11px}
-.gl{display:flex;justify-content:space-between;align-items:center;margin-top:22px}.gl h3{font-size:20px}.gl span.m{background:#fff;color:#14122b;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:600;margin-left:8px}
-.va{background:#ffffff25;border:1px solid #fff4;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:14px}
+input,select,textarea{width:100%;padding:12px;border-radius:12px;border:0;background:#ffffff26;color:#fff;margin-bottom:10px;font-size:16px;font-family:inherit}
+select option{color:#000}input::placeholder,textarea::placeholder{color:#d9d4f0}
+label{font-size:12px;color:#e0dcf5;display:block;margin-bottom:4px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.chip{padding:8px 12px;border-radius:20px;background:#ffffff26;font-size:12px}.chip.on{background:#6c4cf1}
+.top{display:flex;justify-content:space-between;margin-bottom:14px}.rb{width:38px;height:38px;border-radius:50%;background:#ffffff25;border:1px solid #fff5;display:flex;align-items:center;justify-content:center;font-size:15px}
+.host{display:flex;align-items:center;gap:12px;margin:8px 0 18px}.av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:none;color:#14122b}
+.row{display:flex;gap:12px;align-items:center;margin:14px 0}.row .ic{font-size:22px}
+.title{font-size:24px;font-weight:700;margin:16px 0 4px}.desc{font-size:15px;line-height:1.5;margin:14px 0}
+.count{display:flex;gap:8px;margin:12px 0}.count div{background:#ffffff26;border-radius:14px;padding:10px;min-width:64px;text-align:center}.count b{font-size:22px;display:block}.count small{color:#eee;font-size:11px}
+.gl{display:flex;justify-content:space-between;align-items:center;margin-top:22px}.gl span.m{background:#fff;color:#14122b;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:600;margin-left:8px}
+.va{background:#ffffff25;border:1px solid #fff4;border-radius:20px;padding:8px 16px;font-size:14px;display:inline-block}
 .avs{display:flex;gap:8px;margin:12px 0;overflow-x:auto}
 .pill{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);background:#fff;color:#14122b;border-radius:30px;display:none;padding:14px 22px;gap:18px;font-weight:700;font-size:16px;box-shadow:0 8px 30px #0006;z-index:8;white-space:nowrap}
-.pill.show{display:flex}.pill span{cursor:pointer}.pill i{width:1px;background:#bbb}
-.cm{display:flex;gap:10px;margin:12px 0}.cm .bub{background:#ffffff1c;border-radius:14px;padding:10px 12px;font-size:14px;flex:1}.cm small{color:#d4cff0;display:block;font-size:11px;margin-top:2px}
-.lockbox{background:#ffffff14;border:1px dashed #fff5;border-radius:16px;padding:16px;text-align:center;font-size:13px;color:#e0dcf5}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.grid div{aspect-ratio:1;border-radius:8px}.blur div{filter:blur(8px)}
-.video{height:290px;border-radius:20px;background:linear-gradient(160deg,#6c4cf1,#f14c9a,#f1a44c);display:flex;align-items:center;justify-content:center}
-.video .t{font-size:22px;font-weight:700;text-align:center;padding:0 20px}
+.pill.show{display:flex}.pill i{width:1px;background:#bbb}
+.cm{display:flex;gap:10px;margin:12px 0}.cm .bub{background:#ffffff26;border-radius:14px;padding:10px 12px;font-size:14px;flex:1}.cm small{color:#e0dcf5;display:block;font-size:11px;margin-top:2px}
+.lockbox{background:#ffffff14;border:1px dashed #fff5;border-radius:16px;padding:16px;text-align:center;font-size:13px;color:#e8e4fa;margin-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.grid>div,.grid>img{aspect-ratio:1;border-radius:8px;width:100%;object-fit:cover}.blur>div{filter:blur(8px)}
+.vid{height:300px;border-radius:20px;display:flex;align-items:flex-end;justify-content:center;background-size:cover;background-position:center;transition:background .6s;overflow:hidden}
+.vid .t{background:#0007;width:100%;padding:14px;font-size:18px;font-weight:700;text-align:center}
 .bar{height:5px;background:#ffffff44;border-radius:3px;margin-top:10px}.bar div{height:100%;width:0;background:#fff;border-radius:3px}
 .qr{width:150px;height:150px;margin:12px auto;background:#fff;border-radius:12px;padding:10px;display:grid;grid-template-columns:repeat(10,1fr)}
 .tg{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #ffffff22;font-size:14px}
-.sw{width:44px;height:24px;border-radius:12px;background:#555;position:relative;cursor:pointer;flex:none}.sw::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}.sw.on{background:#6c4cf1}.sw.on::after{left:22px}
-.tl{border-left:2px solid #ffffff44;margin:10px 0 0 8px;padding-left:16px}.tl div{margin-bottom:14px;font-size:13px;position:relative}.tl div::before{content:"";position:absolute;left:-23px;top:3px;width:10px;height:10px;border-radius:50%;background:#c04cf1}.tl b{display:block}.tl small{color:#d4cff0}
-.mem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #ffffff1f}.mem .i{flex:1;font-size:14px}.mem small{color:#d4cff0;display:block}
-.nudge{background:#fff;color:#14122b;border:0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
+.sw{width:44px;height:24px;border-radius:12px;background:#666;position:relative;flex:none}.sw::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}.sw.on{background:#6c4cf1}.sw.on::after{left:22px}
+.tl{border-left:2px solid #ffffff55;margin:10px 0 0 8px;padding-left:16px}.tl>div{margin-bottom:14px;font-size:13px;position:relative}.tl>div::before{content:"";position:absolute;left:-23px;top:3px;width:10px;height:10px;border-radius:50%;background:#c04cf1}.tl>div.past{opacity:.5}.tl b{display:block}.tl small{color:#e0dcf5}
+.mem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #ffffff1f}.mem .i{flex:1;font-size:14px}.mem small{color:#e0dcf5;display:block}
+.nudge{background:#fff;color:#14122b;border:0;border-radius:14px;padding:6px 12px;font-size:12px;font-weight:600}
+.react{display:flex;gap:8px;margin:12px 0}.react span{background:#ffffff26;border-radius:20px;padding:8px 14px;font-size:15px}
+.award{display:flex;gap:12px;align-items:center;background:#ffffff1c;border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}.award .e{font-size:26px}
 nav{position:absolute;bottom:0;left:0;right:0;height:62px;background:#0d0b1f;display:flex;justify-content:space-around;align-items:center;z-index:6}
-nav span{font-size:11px;color:#c9c4e6;text-align:center;cursor:pointer;padding:6px 10px}nav i{display:block;font-style:normal;font-size:20px}
-.toast{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#fff;color:#14122b;padding:10px 16px;border-radius:20px;font-size:13px;opacity:0;transition:.3s;z-index:20;white-space:nowrap;pointer-events:none}.toast.on{opacity:1}
+nav span{font-size:11px;color:#c9c4e6;text-align:center;padding:6px 10px}nav i{display:block;font-style:normal;font-size:20px}
+.toast{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#fff;color:#14122b;padding:10px 16px;border-radius:20px;font-size:13px;opacity:0;transition:.3s;z-index:20;max-width:92%;text-align:center;pointer-events:none}.toast.on{opacity:1}
 #err{position:fixed;top:0;left:0;right:0;background:#b00020;color:#fff;font-size:12px;padding:6px;z-index:99;display:none}
 </style></head><body>
 <div id="err"></div><div class="phone"><div class="toast" id="toast"></div>
-<div class="screen bgfx on" id="home"><h1>Capsule</h1><p class="sub">Private. Offline-safe. Sealed until you say.</p>
-<div class="card" data-open="0"><b>🌴 Ibiza Boys Trip</b><small>Opens 12 Oct 2027 · 90 on the list · 128 memories</small></div>
-<div class="card" data-open="1"><b>💍 Sarah &amp; Tom Wedding</b><small>Opens on 1st anniversary · 64 guests · 412 memories</small></div>
-<div class="card" data-act="unlocked"><b>🎂 Mike's 30th</b><small style="color:#7dffb0">Unlocked · 96 memories · tap to view</small></div>
-<button class="btn" data-go="create">+ New capsule</button></div>
-
-<div class="screen bgfx" id="create"><h2>New capsule</h2>
-<label>Name</label><input id="nm" placeholder="e.g. Dubai Weekend">
-<label>Type</label><div class="chips" id="types"><div class="chip on">💍 Wedding</div><div class="chip">🌴 Trip</div><div class="chip">🎂 Birthday</div><div class="chip">🎓 Other</div></div>
-<label>Quick unlock</label><div class="chips" id="pre"><div class="chip" data-d="1">Tomorrow</div><div class="chip" data-d="30">1 month</div><div class="chip" data-d="365">1 year</div><div class="chip" data-d="1825">5 years</div></div>
-<label>Unlock date</label><input type="date" id="dt">
-<label>Upload deadline</label><input type="date" id="dl">
-<label>Who can join?</label><select><option>Anyone with the link</option><option>Invited only</option></select>
-<button class="btn" data-act="create">Seal &amp; create 🔒</button><button class="btn ghost" data-go="home">Cancel</button></div>
-
-<div class="screen bgfx" id="cap">
-<div class="top"><div class="rb" data-go="home">‹</div><div style="display:flex;gap:8px"><div class="rb" data-go="invite">➦</div><div class="rb" data-go="settings">⋯</div></div></div>
-<p class="sub" style="margin:0">Hosted by</p>
-<div class="host"><div class="av" style="background:#fff;color:#14122b">B</div><b style="font-size:18px">Benjamin</b></div>
-<div class="row"><span class="ic">📍</span><div><b>Ibiza, Spain</b><br><small style="color:#ddd">Trip 3–7 Oct · memories sealed</small></div></div>
-<div class="title" id="ct">Ibiza Boys Trip</div>
-<div style="font-size:15px">Opens Tuesday 12 October 2027 · 12:00</div>
-<div class="count"><div><b id="d">0</b><small>days</small></div><div><b id="h">0</b><small>hours</small></div><div><b id="m">0</b><small>mins</small></div></div>
-<div class="desc">Everyone adds their best shots from the trip. Nothing is visible until unlock day, then you get the full gallery and a memory film.<br><br>Upload deadline: <b>Sun 10 Oct, 23:00</b>. Add your photos before the capsule locks.</div>
-<div class="chips"><div class="chip on">🔐 End-to-end encrypted</div><div class="chip on">☁️ Auto-backup</div><div class="chip" id="net" data-act="net">📶 Online</div></div>
-<p class="sub" id="qline"></p>
-<div class="gl"><div style="display:flex;align-items:center"><h3>Guest List</h3><span class="m">👥 1 Mutual</span></div><div class="va" data-go="members">View all</div></div>
-<p class="sub" style="margin-top:2px"><span id="gc">8</span> on the list · <span id="uc">3</span> interested · <span id="n">128</span> memories sealed</p>
-<div class="avs" id="avs"></div>
-<div class="grid blur" id="bg" style="margin-top:6px"></div>
-<div class="title" style="font-size:20px;margin-top:22px">Wall</div>
-<div id="wall"></div></div>
-
+<div class="screen bgfx on" id="s-home"></div><div class="screen bgfx" id="s-signup"></div><div class="screen bgfx" id="s-create"></div>
+<div class="screen" id="s-cap"></div><div class="screen bgfx" id="s-members"></div><div class="screen bgfx" id="s-invite"></div>
+<div class="screen bgfx" id="s-settings"></div><div class="screen bgfx" id="s-host"></div><div class="screen" id="s-gallery"></div>
+<div class="screen bgfx" id="s-photo"></div><div class="screen bgfx" id="s-video"></div>
 <div class="pill" id="pill"></div>
-
-<div class="screen bgfx" id="members"><div class="top"><div class="rb" data-go="cap">‹</div></div><h2>Guest list</h2><p class="sub">Host view: see who has added memories and nudge the rest. Content stays sealed.</p>
-<div id="mlist"></div><button class="btn" data-act="nudgeAll">🔔 Nudge everyone who hasn't uploaded</button></div>
-
-<div class="screen bgfx" id="invite"><div class="top"><div class="rb" data-go="cap">‹</div></div><h2>Invite</h2><p class="sub">Guests scan to join and upload from the browser. No app needed.</p><div class="qr" id="qr"></div>
-<button class="btn" data-act="copy">Copy invite link</button>
-<h2 style="margin-top:20px;font-size:16px">Other ways to add content</h2>
-<div class="card"><b>📲 Share sheet</b><small>Save a Snap or Story, then Share → Capsule</small></div>
-<div class="card"><b>🖼 Camera-roll suggest</b><small>Auto-pick photos from the event window</small></div>
-<div class="card"><b>📴 Offline-safe</b><small>Uploads queue and sync when signal returns</small></div>
-<div class="card"><b>✉️ Email drop</b><small>ibiza-7x2@capsule.app</small></div></div>
-
-<div class="screen bgfx" id="settings"><div class="top"><div class="rb" data-go="cap">‹</div></div><h2>Reminders</h2>
-<p class="sub">We'll remind you even if you delete the app. Every email has a magic link to open the capsule.</p>
-<div class="tg"><span>📧 Email<br><small style="color:#d4cff0">you@email.com · required</small></span><div class="sw on" style="opacity:.6"></div></div>
-<div class="tg"><span>💬 SMS / WhatsApp<br><small style="color:#d4cff0">+44 7... (optional)</small></span><div class="sw on" data-sw="1"></div></div>
-<div class="tg"><span>🔔 Push notifications</span><div class="sw on" data-sw="1"></div></div>
-<div class="tg"><span>📤 Upload nudges<br><small style="color:#d4cff0">Max 3 per capsule</small></span><div class="sw on" data-sw="1"></div></div>
-<div class="tg"><span>📅 Yearly check-in<br><small style="color:#d4cff0">For capsules sealed 1+ year</small></span><div class="sw on" data-sw="1"></div></div>
-<div class="tg"><span>🛟 Backup contact<br><small style="color:#d4cff0">Add a partner's email</small></span><div class="va" data-act="backup">Add</div></div>
-<h3 style="margin:20px 0 4px">What you'll get</h3><div class="tl">
-<div><b>On joining</b><small>Email · "Sealed until 12 Oct 2027"</small></div>
-<div><b>7 days before upload deadline</b><small>Push + email · "Add your best shots"</small></div>
-<div><b>48 hours before deadline</b><small>Push + email · "2 days left to upload"</small></div>
-<div><b>Final day</b><small>All channels · "Last call, capsule locks tonight"</small></div>
-<div><b>30 days before unlock</b><small>Push + email</small></div>
-<div><b>7 days before unlock</b><small>Push, email, SMS</small></div>
-<div><b>24 hours before unlock</b><small>All channels</small></div>
-<div><b>Unlock day</b><small>All channels · magic link</small></div>
-<div><b>3 days after</b><small>Email · "You haven't opened it yet"</small></div></div></div>
-
-<div class="screen bgfx" id="gallery"><div class="top"><div class="rb" data-go="home">‹</div></div><h2>🔓 Unlocked!</h2><p class="sub">Everyone can now see all the memories.</p>
-<div class="card" style="cursor:default"><b>✨ AI curation done</b><small>24 best shots picked · 31 duplicates &amp; blurry hidden</small></div>
-<div class="chips" id="ft"><div class="chip on" data-f="all">All 96</div><div class="chip" data-f="best">Best of</div><div class="chip" data-f="vid">Videos</div></div>
-<div class="grid" id="gg"></div>
-<button class="btn" data-go="video">🎬 Watch memory video</button><button class="btn ghost" data-act="book">📖 Order photo book</button></div>
-
-<div class="screen bgfx" id="video"><div class="top"><div class="rb" data-go="gallery">‹</div></div><h2>Memory video</h2>
-<div class="video"><div class="t" id="vt">Tap play</div></div><div class="bar"><div id="pb"></div></div>
-<button class="btn" data-act="play">▶ Play</button><button class="btn ghost" data-act="share">Share to Instagram / Snap</button></div>
-
-<nav><span data-go="home"><i>🏠</i>Home</span><span data-go="create"><i>➕</i>New</span><span data-go="settings"><i>🔔</i>Reminders</span><span data-act="unlocked"><i>🎞</i>Memories</span></nav></div>
+<nav><span data-a="go" data-p="home"><i>🏠</i>Home</span><span data-a="new"><i>➕</i>New</span><span data-a="go" data-p="settings"><i>🔔</i>Reminders</span><span data-a="mem"><i>🎞</i>Memories</span></nav>
+<input type="file" id="fi" accept="image/*" multiple style="display:none"></div>
 <script>
 window.onerror=function(m,s,l){var e=document.getElementById('err');e.style.display='block';e.textContent='JS error: '+m+' (line '+l+')'};
-var $=function(id){return document.getElementById(id)};
-var cols=['#6c4cf1','#f14c9a','#f1a44c','#4cc9f1','#7dffb0','#c04cf1','#f1e24c','#4c6cf1','#f14c4c'];
-var people=[['Ben','B',4],['Jay','J',12],['Marco','M',0],['Luca','L',7],['Sam','S',0],['Dan','D',19],['Alex','A',3],['Rio','R',0]];
-var caps=[['Ibiza Boys Trip','🌴',372],['Sarah &amp; Tom Wedding','💍',365]];
-var comments=[['Jay','J','Cannot wait to see the sunset one 😂','2h ago'],['Dan','D','Added 19 already, uploading the rest tonight','1h ago'],['Luca','L','Who has the boat video??','35m ago']];
-var joined=false,online=true,q=0,days=372,pt;
-function go(s){var a=document.querySelectorAll('.screen');for(var i=0;i<a.length;i++)a[i].classList.remove('on');$(s).classList.add('on');$(s).scrollTop=0;$('pill').classList.toggle('show',s==='cap');if(s==='members')members()}
-function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');setTimeout(function(){e.classList.remove('on')},2000)}
-function fill(id,n){var x='';for(var i=0;i<n;i++)x+='<div style="background:linear-gradient('+(i*40)+'deg,'+cols[i%9]+','+cols[(i+3)%9]+')"></div>';$(id).innerHTML=x}
-function av(c,l,sz){return '<div class="av" style="background:'+cols[c%9]+';'+(sz?'width:'+sz+'px;height:'+sz+'px':'')+'">'+l+'</div>'}
-function ql(){$('qline').textContent='Offline queue: '+q+' · '+(online?'syncing instantly':'will sync when signal returns')}
-function tick(){$('d').textContent=days;$('h').textContent=23-new Date().getHours();$('m').textContent=59-new Date().getMinutes()}
-function avatars(){$('avs').innerHTML=people.slice(0,6).map(function(p,i){return av(i,p[1],60)}).join('')+'<div class="av" style="width:60px;height:60px;background:#ffffff33">+84</div>'}
-function wall(){var w=$('wall');
- if(!joined){w.innerHTML='<div class="lockbox">🔒 The wall is for members only.<br>Join to chat with the group and add memories.</div>';return}
- w.innerHTML=comments.map(function(c){return '<div class="cm">'+av(c[1].charCodeAt(0),c[1],38)+'<div class="bub"><b>'+c[0]+'</b><br>'+c[2]+'<small>'+c[3]+'</small></div></div>'}).join('')+'<input id="ci" placeholder="Write a comment (text only)..."><button class="btn ghost" data-act="post">Post</button>';
- bind(w);$('ci').addEventListener('keydown',function(e){if(e.key==='Enter')post()})}
-function post(){var v=$('ci').value.trim();if(!v)return;comments.push(['You','Y',v.replace(/</g,'&lt;'),'now']);wall()}
-function pill(){$('pill').innerHTML=joined?'<span data-act="add">📷 Add memory</span><i></i><span data-go="settings">🔔 Reminders</span>':'<span data-act="join">🤘 Join</span><i></i><span data-act="interested">☆ Interested</span>';bind($('pill'))}
-function openCap(i){days=caps[i][2];$('ct').innerHTML=caps[i][1]+' '+caps[i][0];fill('bg',9);avatars();online=true;q=0;joined=false;$('net').textContent='📶 Online';$('net').classList.remove('on');ql();tick();pill();wall();go('cap')}
-function toggleNet(){online=!online;var e=$('net');e.textContent=online?'📶 Online':'✈️ Offline';e.classList.toggle('on',!online);if(online&&q>0){$('n').textContent=+$('n').textContent+q;toast(q+' queued memories synced ☁️');q=0}ql()}
-function addPhoto(){if(online){$('n').textContent=+$('n').textContent+1;toast('Memory encrypted & backed up 🔐')}else{q++;toast('No signal: saved to offline queue 📥');ql()}}
-function members(){$('mlist').innerHTML=people.map(function(p,i){return '<div class="mem">'+av(i,p[1])+'<div class="i"><b>'+p[0]+'</b><small>'+(p[2]?p[2]+' memories added':'Nothing added yet')+'</small></div>'+(p[2]?'<span>✅</span>':'<button class="nudge" data-act="nudge" data-n="'+p[0]+'">Nudge</button>')+'</div>'}).join('');bind($('mlist'))}
-function unlocked(){fill('gg',24);go('gallery')}
-function create(){var n=$('nm').value||'New Capsule',d=$('dt').value,k=30;if(d)k=Math.max(1,Math.ceil((new Date(d)-new Date())/864e5));caps[0]=[n,'✨',k];openCap(0);toast('Capsule sealed 🔒')}
-function play(){var L=['Day 1 ✈️','The boys arrive','Sunset vibes 🌅','Dinner chaos 🍽','Best night ever 🎉','See you next year ❤️'],p=0;clearInterval(pt);pt=setInterval(function(){p+=2;$('pb').style.width=p+'%';$('vt').textContent=L[Math.min(5,Math.floor(p/17))];if(p>=100)clearInterval(pt)},100)}
-var acts={unlocked:unlocked,create:create,post:post,play:play,net:toggleNet,add:addPhoto,
- join:function(){joined=true;$('gc').textContent=+$('gc').textContent+1;pill();wall();toast('You are in! 🔓 Wall unlocked');setTimeout(function(){toast('Reminders set to your email 📧')},2200)},
- interested:function(){$('uc').textContent=+$('uc').textContent+1;toast('Marked interested ⭐')},
- nudgeAll:function(){toast('Nudges sent to '+people.filter(function(p){return !p[2]}).length+' people 🔔')},
- nudge:function(el){toast('Nudge sent to '+el.getAttribute('data-n')+' 📧')},
- copy:function(){toast('Link copied')},backup:function(){toast('Backup contact added')},book:function(){toast('Photo book coming soon')},share:function(){toast('Shared!')}};
-function handle(t){
- if(t.hasAttribute('data-open'))return openCap(+t.getAttribute('data-open'));
- if(t.hasAttribute('data-act'))return acts[t.getAttribute('data-act')](t);
- if(t.hasAttribute('data-go'))return go(t.getAttribute('data-go'))}
-function bind(root){var a=root.querySelectorAll('[data-open],[data-go],[data-act]');for(var i=0;i<a.length;i++){if(a[i]._b)continue;a[i]._b=1;(function(el){el.addEventListener('click',function(e){e.stopPropagation();handle(el)})})(a[i])}
- var s=root.querySelectorAll('[data-sw]');for(i=0;i<s.length;i++){if(s[i]._b)continue;s[i]._b=1;(function(el){el.addEventListener('click',function(){el.classList.toggle('on')})})(s[i])}
- var c=root.querySelectorAll('#types .chip,#pre .chip,#ft .chip');for(i=0;i<c.length;i++){if(c[i]._b)continue;c[i]._b=1;(function(ch){ch.addEventListener('click',function(){var g=ch.parentNode,k=g.querySelectorAll('.chip');for(var j=0;j<k.length;j++)k[j].classList.remove('on');ch.classList.add('on');
-  if(g.id==='pre')$('dt').value=new Date(Date.now()+ch.getAttribute('data-d')*864e5).toISOString().slice(0,10);
-  if(g.id==='ft')fill('gg',{all:24,best:9,vid:6}[ch.getAttribute('data-f')])})})(c[i])}}
-(function(){var x='';for(var i=0;i<100;i++)x+='<div style="background:'+(Math.random()>.5?'#14122b':'#fff')+'"></div>';$('qr').innerHTML=x;bind(document);pill()})();
+var $=function(i){return document.getElementById(i)},D=864e5,KEY='capsule_v4';
+var COLS=['#6c4cf1','#f14c9a','#f1a44c','#4cc9f1','#7dffb0','#c04cf1','#f1e24c','#4c6cf1','#f14c4c'];
+var COV=['linear-gradient(160deg,#f6d58a,#c0392b 55%,#3a1d4a)','linear-gradient(160deg,#4cc9f1,#6c4cf1 60%,#14122b)','linear-gradient(160deg,#7dffb0,#0f8b8d 60%,#14122b)','linear-gradient(160deg,#f14c9a,#6c4cf1 60%,#2a1050)','linear-gradient(160deg,#f1e24c,#f1a44c 50%,#7a2e2e)','linear-gradient(160deg,#888,#14122b 60%,#000)'];
+var TY={wedding:{e:'💍',ic:'💒',row:'Mr &amp; Mrs',line:'Guests add photos and wishes for the couple',msg:'Wishes for the couple',lab:'Wedding'},
+ trip:{e:'🌴',ic:'📍',row:'Group trip',line:'Everyone adds their best shots from the trip',msg:'Notes to the group',lab:'Trip'},
+ birthday:{e:'🎂',ic:'🎉',row:'Birthday surprise',line:'Friends leave messages that open on the day',msg:'Birthday messages',lab:'Birthday'},
+ other:{e:'🎓',ic:'✨',row:'Special moment',line:'Collect everyone\'s memories in one place',msg:'Message for the future',lab:'Other'}};
+var online=true,queue=[],pend=null,draft={type:'trip',cover:0},tm,pt;
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function fmt(t){return new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}
+function fmtF(t){return new Date(t).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · 12:00'}
+function dleft(t){var d=Math.ceil((t-Date.now())/D);return d>1?d+' days':d===1?'tomorrow':'today'}
+function uid(){return Date.now()+Math.floor(Math.random()*1e6)}
+function A(a,p){return ' data-a="'+a+'" data-p="'+(p===undefined?'':p)+'"'}
+function av(i,l,sz){return '<div class="av" style="background:'+COLS[i%9]+(sz?';width:'+sz+'px;height:'+sz+'px':'')+'">'+esc(l)+'</div>'}
+function gradient(i){return 'linear-gradient('+(i*40)+'deg,'+COLS[i%9]+','+COLS[(i+3)%9]+')'}
+function sample(n,names){var a=[];for(var i=0;i<n;i++)a.push({id:uid()+i,by:names[i%names.length],src:null,g:i,ok:true,r:{},c:[]});return a}
+function seed(){var n=Date.now(),P=function(a){return a.map(function(x){return {name:x[0],count:x[1]}})};
+ return {user:null,cur:1,prefs:{sms:1,push:1,nudge:1,yearly:1},books:[],caps:[
+ {id:1,name:'Ibiza Boys Trip',type:'trip',cover:0,host:'Benjamin',mine:true,unlock:n+372*D,deadline:n+9*D,approval:false,joined:false,interested:3,base:128,extra:84,members:P([['Ben',4],['Jay',12],['Marco',0],['Luca',7],['Sam',0],['Dan',19],['Alex',3],['Rio',0]]),photos:[],samples:null,messages:[],comments:[{by:'Jay',t:'Cannot wait to see the sunset one 😂',w:'2h ago'},{by:'Dan',t:'Added 19 already, uploading the rest tonight',w:'1h ago'}]},
+ {id:2,name:'Sarah & Tom Wedding',type:'wedding',cover:3,host:'Sarah & Tom',mine:false,unlock:n+365*D,deadline:n+30*D,approval:true,joined:false,interested:9,base:412,extra:58,members:P([['Emma',30],['Olivia',22],['Noah',0],['Liam',41],['Ava',8],['Mia',0]]),photos:[],samples:null,messages:[],comments:[{by:'Emma',t:'Table 5 is already in tears 😭',w:'3h ago'}]},
+ {id:3,name:"Mike's 30th",type:'birthday',cover:4,host:'Mike',mine:false,unlock:n-2*D,deadline:n-5*D,approval:false,joined:true,interested:0,base:96,extra:20,members:P([['Mike',10],['Tom',22],['Chris',31],['Jess',33]]),photos:[],samples:null,messages:[{from:'Tom',t:'Happy 30th! Remember Lisbon 2019?',at:n-2*D}],comments:[]}]}}
+var S=(function(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.caps)return s}catch(e){}return seed()})();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('Storage full: photo kept for this session only')}}
+function C(){return S.caps.filter(function(c){return c.id===S.cur})[0]||S.caps[0]}
+function isOpen(c){return Date.now()>=c.unlock}
+function isHost(c){return !!c.mine}
+function hostName(c){return c.mine&&S.user?S.user.name:c.host}
+function me(){return S.user?S.user.name:'You'}
+function total(c){return c.base+c.photos.filter(function(p){return p.ok}).length}
+function ensureSamples(c){if(!c.samples)c.samples=sample(24,c.members.length?c.members.map(function(m){return m.name}):['Guest'])}
+function glist(c){ensureSamples(c);var real=c.photos.filter(function(p){return p.ok});return real.concat(c.base>0?c.samples.slice(0,Math.max(0,24-real.length)):[])}
+function rsum(p){var t=0;for(var k in p.r)t+=p.r[k];return t}
+function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){e.classList.remove('on')},2200)}
+function ensureUser(fn){if(S.user)return fn();pend=fn;go('signup')}
+var cur='home';
+function go(s){cur=s;var a=document.querySelectorAll('.screen');for(var i=0;i<a.length;i++)a[i].classList.remove('on');var el=$('s-'+s);el.classList.add('on');R[s]();el.scrollTop=0;pill()}
+function refresh(){var el=$('s-'+cur),t=el.scrollTop;R[cur]();el.scrollTop=t;pill()}
+function bind(root){var a=root.querySelectorAll('[data-a]');for(var i=0;i<a.length;i++){if(a[i]._b)continue;a[i]._b=1;(function(el){el.addEventListener('click',function(e){e.stopPropagation();var f=acts[el.getAttribute('data-a')];if(f)f(el.getAttribute('data-p'),el)})})(a[i])}}
+function set(id,h){var e=$('s-'+id);e.innerHTML=h;bind(e);return e}
+function back(to){return '<div class="top"><div class="rb"'+A('go',to)+'>‹</div></div>'}
+var R={};
+R.home=function(){var h='<div style="display:flex;justify-content:space-between;align-items:center"><h1>Capsule</h1>'+(S.user?'<div class="va"'+A('go','settings')+'>👤 '+esc(S.user.name)+'</div>':'<div class="va"'+A('go','signup')+'>Sign up</div>')+'</div><p class="sub">Private. Offline-safe. Sealed until you say.</p>';
+ S.caps.forEach(function(c){var T=TY[c.type];h+='<div class="card"'+A('open',c.id)+'><b>'+T.e+' '+esc(c.name)+'</b><small>'+(isOpen(c)?'<span style="color:#7dffb0">Unlocked · tap to view</span>':'Opens '+fmt(c.unlock)+' · in '+dleft(c.unlock))+' · '+total(c)+' memories</small></div>'});
+ h+='<button class="btn"'+A('new')+'>+ New capsule</button><button class="btn ghost"'+A('reset')+'>Reset demo data</button>';set('home',h)};
+R.signup=function(){set('signup',back('home')+'<h2>Join Capsule</h2><p class="sub">So we can remind you when memories unlock, even if you delete the app. Every email has a magic link to open your capsule.</p><label>Your name</label><input id="su-n" placeholder="Name"><label>Email (required)</label><input id="su-e" type="email" placeholder="you@email.com"><label>Mobile (optional, for SMS / WhatsApp)</label><input id="su-p" type="tel" placeholder="+44 7..."><label style="display:flex;gap:8px;align-items:flex-start;font-size:13px"><input id="su-c" type="checkbox" checked style="width:auto;margin:3px 0 0"> I agree to receive unlock and upload reminders. I can change channels or unsubscribe any time.</label><button class="btn"'+A('signup')+'>Continue</button>')};
+R.create=function(){var d=draft;set('create','<div class="top"><div class="rb"'+A('go','home')+'>‹</div></div><h2>New capsule</h2><label>Name</label><input id="nm" placeholder="e.g. Dubai Weekend" value="'+esc(d.name||'')+'"><label>Type</label><div class="chips">'+Object.keys(TY).map(function(k){return '<div class="chip'+(d.type===k?' on':'')+'"'+A('ctype',k)+'>'+TY[k].e+' '+TY[k].lab+'</div>'}).join('')+'</div><label>Quick unlock</label><div class="chips">'+[['Tomorrow',1],['1 month',30],['1 year',365],['5 years',1825]].map(function(x){return '<div class="chip'+(d.pre===x[1]?' on':'')+'"'+A('cpre',x[1])+'>'+x[0]+'</div>'}).join('')+'</div><label>Unlock date</label><input type="date" id="dt" value="'+(d.dt||'')+'"><label>Upload deadline</label><input type="date" id="dl" value="'+(d.dl||'')+'"><label>Cover</label><div class="chips">'+COV.map(function(c,i){return '<div class="chip" style="width:44px;height:44px;padding:0;background:'+c+';border:2px solid '+(d.cover===i?'#fff':'transparent')+'"'+A('ccover',i)+'></div>'}).join('')+'</div><label style="display:flex;gap:8px;align-items:center"><input id="ap" type="checkbox" style="width:auto;margin:0"'+(d.ap?' checked':'')+'> Host approves photos before they are added</label><button class="btn"'+A('create')+'>Seal &amp; create 🔒</button>')};
+R.cap=function(){var c=C(),T=TY[c.type],open=isOpen(c),host=isHost(c),h='';
+ h+='<div class="top"><div class="rb"'+A('go','home')+'>‹</div><div style="display:flex;gap:8px"><div class="rb"'+A('go','invite')+'>➦</div><div class="rb"'+A('go',host?'host':'settings')+'>⋯</div></div></div>';
+ h+='<p class="sub" style="margin:0">Hosted by</p><div class="host">'+av(1,hostName(c).charAt(0),48)+'<b style="font-size:18px">'+esc(hostName(c))+'</b></div>';
+ h+='<div class="row"><span class="ic">'+T.ic+'</span><div><b>'+T.row+'</b><br><small style="color:#eee">'+T.line+'</small></div></div>';
+ h+='<div class="title">'+T.e+' '+esc(c.name)+'</div><div style="font-size:15px">'+(open?'🔓 Unlocked':'Opens '+fmtF(c.unlock))+'</div>';
+ if(open)h+='<div class="card" style="margin-top:14px"'+A('go','gallery')+'><b>🎞 Memories are open!</b><small>Tap to see the gallery, awards and memory video</small></div>';
+ else h+='<div class="count"><div><b id="cd-d">0</b><small>days</small></div><div><b id="cd-h">0</b><small>hours</small></div><div><b id="cd-m">0</b><small>mins</small></div><div><b id="cd-s">0</b><small>secs</small></div></div>';
+ var dl=Date.now()>c.deadline;
+ h+='<div class="desc">'+(open?'The capsule is open. Enjoy the memories together.':'Nothing is visible until unlock day, then you get the full gallery and a memory film.')+'<br><br>Upload deadline: <b>'+fmt(c.deadline)+'</b>'+(dl?' (closed)':'')+'</div>';
+ h+='<div class="chips"><div class="chip on">🔐 End-to-end encrypted</div><div class="chip on">☁️ Auto-backup</div><div class="chip'+(online?'':' on')+'"'+A('net')+'>'+(online?'📶 Online':'✈️ Offline')+'</div></div><p class="sub">Offline queue: '+queue.length+' · '+(online?'syncing instantly':'will sync when signal returns')+'</p>';
+ h+='<div class="gl"><div style="display:flex;align-items:center"><h3>Guest List</h3><span class="m">👥 1 Mutual</span></div><div class="va"'+A('go','members')+'>View all</div></div>';
+ h+='<p class="sub" style="margin-top:2px">'+(c.members.length+(c.extra||0))+' on the list · '+c.interested+' interested · '+total(c)+' memories '+(open?'':'sealed')+'</p><div class="avs">'+c.members.slice(0,6).map(function(m,i){return av(i,m.name.charAt(0),60)}).join('')+(c.extra?'<div class="av" style="width:60px;height:60px;background:#ffffff33;color:#fff">+'+c.extra+'</div>':'')+'</div>';
+ if(!open)h+='<div class="grid blur">'+[0,1,2,3,4,5].map(function(i){return '<div style="background:'+gradient(i)+'"></div>'}).join('')+'</div>';
+ var mine=c.photos.filter(function(p){return p.by===me()});
+ if(c.joined&&!open){h+='<h3 style="margin-top:22px">My uploads</h3><p class="sub">Only you can see these until unlock.'+(c.approval&&!host?' Photos wait for host approval.':'')+'</p>';
+  h+=mine.length?'<div class="grid">'+mine.map(function(p){return '<div style="position:relative"><img src="'+p.src+'" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px'+(p.ok?'':';opacity:.45')+'">'+(p.ok?'':'<span style="position:absolute;left:4px;bottom:4px;font-size:10px;background:#000a;padding:2px 6px;border-radius:8px">pending</span>')+'</div>'}).join('')+'</div>':'<div class="lockbox">No uploads yet. Tap “Add memory” below.</div>'}
+ h+='<h3 style="margin-top:22px">'+T.msg+'</h3><p class="sub">Leave a message that stays sealed until it opens. We will email everyone when it does.</p>';
+ c.messages.forEach(function(m){var o=Date.now()>=m.at;h+=o?'<div class="cm">'+av(m.from.charCodeAt(0),m.from.charAt(0),38)+'<div class="bub"><b>'+esc(m.from)+'</b><br>'+esc(m.t)+'<small>Opened</small></div></div>':'<div class="lockbox">🔒 Message from '+esc(m.from)+' · opens '+fmt(m.at)+'</div>'});
+ if(c.joined){h+='<textarea id="mi" rows="2" placeholder="Write a message for the future..."></textarea><select id="md"><option value="0">Opens with the capsule</option><option value="1">1 year after the capsule opens</option><option value="5">5 years after the capsule opens</option></select><button class="btn ghost"'+A('msg')+'>🔒 Seal message</button>'}
+ h+='<h3 style="margin-top:22px">Wall</h3>';
+ if(!c.joined)h+='<div class="lockbox">🔒 The wall is for members only.<br>Join to chat with the group and add memories.</div>';
+ else{c.comments.forEach(function(x){h+='<div class="cm">'+av(x.by.charCodeAt(0),x.by.charAt(0),38)+'<div class="bub"><b>'+esc(x.by)+'</b><br>'+esc(x.t)+'<small>'+x.w+'</small></div></div>'});h+='<input id="ci" placeholder="Write a comment (text only)..."><button class="btn ghost"'+A('post')+'>Post</button>'}
+ var e=set('cap',h);e.style.background=COV[c.cover%6];var ci=$('ci');if(ci)ci.addEventListener('keydown',function(ev){if(ev.key==='Enter')acts.post()});tick()};
+R.members=function(){var c=C(),h=back('cap')+'<h2>Guest list</h2><p class="sub">See who has added memories. Content stays sealed until unlock.</p>';
+ c.members.forEach(function(m,i){h+='<div class="mem">'+av(i,m.name.charAt(0),44)+'<div class="i"><b>'+esc(m.name)+'</b><small>'+(m.count?m.count+' memories added':'Nothing added yet')+'</small></div>'+(m.count?'<span>✅</span>':(isHost(c)?'<button class="nudge"'+A('nudge',i)+'>Nudge</button>':''))+(isHost(c)&&!m.me?'<button class="nudge" style="background:#ffffff33;color:#fff"'+A('rm',i)+'>Remove</button>':'')+'</div>'});
+ if(isHost(c))h+='<button class="btn"'+A('nudgeAll')+'>🔔 Nudge everyone who hasn\'t uploaded</button>';set('members',h)};
+R.invite=function(){var x='',c=C(),s=c.id%1000*7+3;for(var i=0;i<100;i++){s=(s*9301+49297)%233280;x+='<div style="background:'+(s/233280>.5?'#14122b':'#fff')+'"></div>'}
+ set('invite',back('cap')+'<h2>Invite</h2><p class="sub">Guests scan to join and upload from the browser. No app needed.</p><div class="qr">'+x+'</div><button class="btn"'+A('copy')+'>Copy invite link</button><h2 style="margin-top:20px;font-size:16px">Other ways to add content</h2><div class="card"><b>📲 Share sheet</b><small>Save a Snap or Story, then Share → Capsule</small></div><div class="card"><b>🖼 Camera-roll suggest</b><small>Auto-pick photos from the event window</small></div><div class="card"><b>📴 Offline-safe</b><small>Uploads queue and sync when signal returns</small></div><div class="card"><b>✉️ Email drop</b><small>capsule-'+(c.id%1000)+'x2@capsule.app</small></div>')};
+R.settings=function(){var c=C(),u=S.user,h=back('home')+'<h2>Reminders</h2><p class="sub">We remind you even if you delete the app. Every email has a magic link to open the capsule.</p>';
+ if(!u)h+='<div class="card"'+A('go','signup')+'><b>Sign up to set reminders</b><small>Add your email and optional phone</small></div>';
+ else h+='<div class="tg"><span>📧 Email<br><small>'+esc(u.email)+' · required</small></span><div class="sw on" style="opacity:.6"></div></div>';
+ [['sms','💬 SMS / WhatsApp',u&&u.phone?esc(u.phone):'Add a number at sign-up'],['push','🔔 Push notifications','If the app is installed'],['nudge','📤 Upload nudges','Max 3 per capsule'],['yearly','📅 Yearly check-in','For capsules sealed 1+ year']].forEach(function(t){h+='<div class="tg"><span>'+t[1]+'<br><small>'+t[2]+'</small></span><div class="sw'+(S.prefs[t[0]]?' on':'')+'"'+A('pref',t[0])+'></div></div>'});
+ h+='<label style="margin-top:14px">🛟 Backup contact (e.g. partner\'s email)</label><input id="bk" placeholder="backup@email.com" value="'+esc(u&&u.backup||'')+'"><button class="btn ghost"'+A('backup')+'>Save backup contact</button>';
+ var ev=[['On joining',Date.now(),'Email · “Sealed until '+fmt(c.unlock)+'”'],['7 days before upload deadline',c.deadline-7*D,'Push + email · “Add your best shots”'],['48 hours before deadline',c.deadline-2*D,'Push + email · “2 days left to upload”'],['Final upload day',c.deadline,'All channels · “Last call, capsule locks tonight”'],['30 days before unlock',c.unlock-30*D,'Push + email'],['7 days before unlock',c.unlock-7*D,'Push, email, SMS'],['24 hours before unlock',c.unlock-D,'All channels'],['Unlock day',c.unlock,'All channels · magic link'],['3 days after',c.unlock+3*D,'Email · “You haven\'t opened it yet”']].sort(function(a,b){return a[1]-b[1]});
+ h+='<h3 style="margin:20px 0 4px">Timeline for '+TY[c.type].e+' '+esc(c.name)+'</h3><div class="tl">'+ev.map(function(e){return '<div class="'+(e[1]<Date.now()-1000?'past':'')+'"><b>'+e[0]+' · '+fmt(e[1])+'</b><small>'+e[2]+'</small></div>'}).join('')+'</div>';set('settings',h)};
+R.host=function(){var c=C(),h=back('cap')+'<h2>Host controls</h2><div class="card" style="cursor:default"><b>Dates</b><small>Unlock: '+fmt(c.unlock)+' · Upload deadline: '+fmt(c.deadline)+'</small></div><div class="chips"><div class="chip"'+A('ext',1)+'>+1 day deadline</div><div class="chip"'+A('ext',7)+'>+7 days deadline</div></div><label>Change unlock date (before the deadline only)</label><input type="date" id="nu"><button class="btn ghost"'+A('chgun')+'>Update unlock date</button>';
+ var pd=c.photos.filter(function(p){return !p.ok});
+ h+='<h3 style="margin-top:20px">Pending approval ('+pd.length+')</h3>'+(pd.length?pd.map(function(p){return '<div class="mem"><img src="'+p.src+'" style="width:56px;height:56px;border-radius:10px;object-fit:cover"><div class="i"><b>'+esc(p.by)+'</b></div><button class="nudge"'+A('appr',p.id)+'>Approve</button><button class="nudge" style="background:#ffffff33;color:#fff"'+A('rej',p.id)+'>Reject</button></div>'}).join(''):'<p class="sub">Nothing waiting.</p>');
+ h+='<div class="tg" style="margin-top:10px"><span>Require approval for new photos</span><div class="sw'+(c.approval?' on':'')+'"'+A('toggleAp')+'></div></div>';
+ h+='<button class="btn"'+A('go','members')+'>👥 Manage members</button><button class="btn ghost"'+A('nudgeAll')+'>🔔 Nudge everyone</button><button class="btn ghost"'+A('demoUnlock')+'>⏩ Demo: unlock now</button>';set('host',h)};
+function items(c){var l=glist(c);if(S.filter==='mine')l=l.filter(function(p){return p.by===me()});if(S.filter==='best')l=l.slice().sort(function(a,b){return rsum(b)-rsum(a)}).slice(0,9);return l}
+R.gallery=function(){var c=C(),all=glist(c),l=items(c),h='<div class="top"><div class="rb"'+A('go','cap')+'>‹</div></div><h2>'+TY[c.type].e+' '+esc(c.name)+'</h2><p class="sub">'+(isOpen(c)?'🔓 Unlocked! Everyone can now see all the memories.':'Still sealed. Demo preview below.')+'</p>';
+ h+='<div class="card" style="cursor:default"><b>✨ AI curation done</b><small>Best shots picked · 31 duplicates &amp; blurry hidden</small></div><div class="chips">'+[['all','All '+all.length],['best','Best of'],['mine','Mine']].map(function(f){return '<div class="chip'+((S.filter||'all')===f[0]?' on':'')+'"'+A('filter',f[0])+'>'+f[1]+'</div>'}).join('')+'</div>';
+ h+='<div class="grid">'+l.map(function(p){var i=all.indexOf(p);return p.src?'<img src="'+p.src+'"'+A('photo',i)+'>':'<div style="background:'+gradient(p.g)+'"'+A('photo',i)+'></div>'}).join('')+'</div>'+(l.length?'':'<div class="lockbox">Nothing here yet.</div>');
+ var best=all.slice().sort(function(a,b){return rsum(b)-rsum(a)})[0],ms=c.members.slice().sort(function(a,b){return b.count-a.count})[0],first=c.members.filter(function(m){return m.count>0})[0];
+ h+='<h3 style="margin-top:22px">🏆 Awards</h3>';
+ if(ms)h+='<div class="award"><span class="e">📸</span><span><b>Most photos</b><br>'+esc(ms.name)+' · '+ms.count+' memories</span></div>';
+ if(first)h+='<div class="award"><span class="e">⚡</span><span><b>First to upload</b><br>'+esc(first.name)+'</span></div>';
+ if(best&&rsum(best))h+='<div class="award"><span class="e">❤️</span><span><b>Most loved photo</b><br>by '+esc(best.by)+' · '+rsum(best)+' reactions</span></div>';
+ else h+='<div class="award"><span class="e">❤️</span><span><b>Most loved photo</b><br>React to photos to crown one</span></div>';
+ h+='<button class="btn"'+A('go','video')+'>🎬 Watch memory video</button><button class="btn ghost"'+A('dlall')+'>⬇️ Download all photos</button><button class="btn ghost"'+A('book')+'>📖 Order photo book</button>';
+ var e=set('gallery',h);e.style.background=COV[c.cover%6]};
+R.photo=function(){var c=C(),all=glist(c),p=all[S.pi];if(!p)return go('gallery');
+ var h='<div class="top"><div class="rb"'+A('go','gallery')+'>‹</div><div style="display:flex;gap:8px"><div class="rb"'+A('pnav',-1)+'>←</div><div class="rb"'+A('pnav',1)+'>→</div></div></div>';
+ h+=p.src?'<img src="'+p.src+'" style="width:100%;border-radius:16px">':'<div style="width:100%;aspect-ratio:1;border-radius:16px;background:'+gradient(p.g)+'"></div>';
+ h+='<p class="sub" style="margin-top:10px">Added by <b>'+esc(p.by)+'</b> · '+(S.pi+1)+' of '+all.length+'</p><div class="react">'+['❤️','🔥','😂'].map(function(e){return '<span'+A('react',e)+'>'+e+' '+(p.r[e]||0)+'</span>'}).join('')+'<span'+A('dl1')+'>⬇️</span></div><h3>Comments</h3>';
+ p.c.forEach(function(x){h+='<div class="cm">'+av(x.by.charCodeAt(0),x.by.charAt(0),34)+'<div class="bub"><b>'+esc(x.by)+'</b><br>'+esc(x.t)+'</div></div>'});
+ h+='<input id="pc" placeholder="Add a comment..."><button class="btn ghost"'+A('pcom')+'>Post</button>';set('photo',h)};
+R.video=function(){var c=C(),l=glist(c).slice(0,8);set('video',back('gallery')+'<h2>Memory video</h2><div class="vid" id="vd" style="background-image:'+(l[0]&&l[0].src?'url('+l[0].src+')':gradient(0))+'"><div class="t" id="vt">Tap play</div></div><div class="bar"><div id="pb"></div></div><button class="btn"'+A('play')+'>▶ Play</button><button class="btn ghost"'+A('share')+'>Share to Instagram / Snap</button>')};
+function pill(){var p=$('pill'),c=C();p.classList.toggle('show',cur==='cap');if(cur!=='cap')return;
+ p.innerHTML=isOpen(c)?'<span'+A('go','gallery')+'>🎞 Open memories</span><i></i><span'+A('go','settings')+'>🔔 Reminders</span>':c.joined?'<span'+A('add')+'>📷 Add memory</span><i></i><span'+A('go','settings')+'>🔔 Reminders</span>':'<span'+A('join')+'>🤘 Join</span><i></i><span'+A('interested')+'>☆ Interested</span>';bind(p)}
+function tick(){var c=C();if(cur!=='cap')return;var r=c.unlock-Date.now();if(r<=0){if($('cd-d'))refresh();return}if(!$('cd-d'))return;$('cd-d').textContent=Math.floor(r/D);$('cd-h').textContent=Math.floor(r%D/36e5);$('cd-m').textContent=Math.floor(r%36e5/6e4);$('cd-s').textContent=Math.floor(r%6e4/1e3)}
+setInterval(tick,1000);
+function shrink(f,cb){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.round(im.width*s);cv.height=Math.round(im.height*s);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);cb(cv.toDataURL('image/jpeg',.72))};im.src=r.result};r.readAsDataURL(f)}
+function addPhotos(arr){var c=C(),h=isHost(c),m=c.members.filter(function(x){return x.me})[0];
+ arr.forEach(function(src){c.photos.push({id:uid(),by:me(),src:src,ok:!(c.approval&&!h),r:{},c:[],g:0});if(m)m.count++});
+ save();refresh();toast(c.approval&&!h?'Sent for host approval ⏳':arr.length+' memory'+(arr.length>1?' memories':'')+' encrypted & backed up 🔐')}
+$('fi').addEventListener('change',function(){var fs=[].slice.call(this.files),out=[],self=this;if(!fs.length)return;
+ fs.forEach(function(f){shrink(f,function(d){out.push(d);if(out.length===fs.length){if(online)addPhotos(out);else{queue=queue.concat(out);refresh();toast('No signal: '+out.length+' saved to offline queue 📥')}self.value=''}})})});
+function dlOne(x){var a=document.createElement('a');a.href=x.src;a.download='memory-'+x.id+'.jpg';document.body.appendChild(a);a.click();a.remove()}
+function cap(){if(!$('nm'))return;draft.name=$('nm').value;draft.dt=$('dt').value;draft.dl=$('dl').value;draft.ap=$('ap').checked}
+var acts={
+ go:function(p){go(p)},
+ open:function(p){S.cur=+p;S.filter='all';go('cap')},
+ new:function(){ensureUser(function(){draft={type:'trip',cover:0};go('create')})},
+ mem:function(){var c=C();if(isOpen(c))go('gallery');else toast('Sealed until '+fmt(c.unlock)+' 🔒')},
+ reset:function(){S=seed();save();queue=[];go('home');toast('Demo data reset')},
+ signup:function(){var n=$('su-n').value.trim(),e=$('su-e').value.trim();if(!n)return toast('Please enter your name');if(!/^\S+@\S+\.\S+$/.test(e))return toast('Please enter a valid email');
+  S.user={name:n,email:e,phone:$('su-p').value.trim(),consent:$('su-c').checked,backup:''};save();toast('Welcome, '+n+'! Reminders go to '+e+' 📧');var f=pend;pend=null;if(f)f();else go('home')},
+ ctype:function(p){cap();draft.type=p;R.create()},
+ cpre:function(p){cap();draft.pre=+p;var d=new Date(Date.now()+p*D);draft.dt=d.toISOString().slice(0,10);draft.dl=new Date(d.getTime()-(p>1?Math.min(p,7)*D:D/2)).toISOString().slice(0,10);R.create()},
+ ccover:function(p){cap();draft.cover=+p;R.create()},
+ create:function(){cap();var n=draft.name||'New Capsule',un=draft.dt?new Date(draft.dt+'T12:00:00').getTime():Date.now()+30*D,dl=draft.dl?new Date(draft.dl+'T23:00:00').getTime():un-12*36e5;
+  if(un<=Date.now())return toast('Pick an unlock date in the future');if(dl>un)return toast('Deadline must be before unlock');
+  var c={id:uid(),name:n,type:draft.type,cover:draft.cover,host:me(),mine:true,unlock:un,deadline:dl,approval:!!draft.ap,joined:true,interested:0,base:0,extra:0,members:[{name:me(),count:0,me:true}],photos:[],samples:null,messages:[],comments:[]};
+  S.caps.unshift(c);S.cur=c.id;save();go('cap');toast('Capsule sealed 🔒 Invite your friends')},
+ net:function(){online=!online;if(online&&queue.length){var q=queue;queue=[];addPhotos(q)}else refresh()},
+ join:function(){ensureUser(function(){var c=C();c.joined=true;c.members.push({name:me(),count:0,me:true});save();go('cap');toast('You are in! 🔓 Wall unlocked');setTimeout(function(){toast('Reminders set to '+S.user.email+' 📧')},2300)})},
+ interested:function(){C().interested++;save();refresh();toast('Marked interested ⭐')},
+ add:function(){var c=C();if(Date.now()>c.deadline)return toast('Upload deadline has passed');$('fi').click()},
+ post:function(){var v=$('ci').value.trim();if(!v)return;C().comments.push({by:me(),t:v,w:'now'});save();refresh()},
+ msg:function(){var v=$('mi').value.trim();if(!v)return toast('Write a message first');var c=C(),y=+$('md').value;c.messages.push({from:me(),t:v,at:c.unlock+y*365*D});save();refresh();toast('Message sealed until '+fmt(c.unlock+y*365*D)+' 🔒')},
+ pref:function(p){S.prefs[p]=S.prefs[p]?0:1;save();refresh()},
+ backup:function(){if(!S.user)return toast('Sign up first');S.user.backup=$('bk').value.trim();save();toast('Backup contact saved')},
+ nudge:function(p){toast('Nudge sent to '+C().members[+p].name+' 📧')},
+ nudgeAll:function(){toast('Nudges sent to '+C().members.filter(function(m){return !m.count}).length+' people 🔔')},
+ rm:function(p){var c=C(),m=c.members.splice(+p,1)[0];save();refresh();toast(m.name+' removed')},
+ copy:function(){var l=location.href.split('#')[0]+'#join='+C().id;try{navigator.clipboard.writeText(l)}catch(e){}toast('Link copied')},
+ ext:function(p){var c=C();c.deadline+=p*D;if(c.deadline>c.unlock)c.unlock=c.deadline+D;save();refresh();toast('Deadline now '+fmt(c.deadline))},
+ chgun:function(){var c=C(),v=$('nu').value;if(!v)return toast('Pick a date');if(Date.now()>c.deadline)return toast('Too late: deadline has passed');var t=new Date(v+'T12:00:00').getTime();if(t<c.deadline)return toast('Unlock must be after the deadline');c.unlock=t;save();refresh();toast('Unlock moved to '+fmt(t)+'. Everyone is notified 📧')},
+ appr:function(p){C().photos.forEach(function(x){if(x.id==+p)x.ok=true});save();refresh();toast('Approved ✅')},
+ rej:function(p){var c=C();c.photos=c.photos.filter(function(x){return x.id!=+p});save();refresh()},
+ toggleAp:function(){var c=C();c.approval=!c.approval;save();refresh()},
+ demoUnlock:function(){var c=C();c.unlock=Date.now();save();go('cap');toast('Unlocked 🔓')},
+ filter:function(p){S.filter=p;refresh()},photo:function(p){S.pi=+p;go('photo')},
+ pnav:function(p){var n=glist(C()).length;S.pi=(S.pi+ +p+n)%n;refresh()},
+ react:function(p){var x=glist(C())[S.pi];x.r[p]=(x.r[p]||0)+1;save();refresh()},
+ pcom:function(){var v=$('pc').value.trim();if(!v)return;glist(C())[S.pi].c.push({by:me(),t:v});save();refresh()},
+ dl1:function(){var x=glist(C())[S.pi];if(!x.src)return toast('Sample photo: nothing to download');dlOne(x)},
+ dlall:function(){var l=glist(C()).filter(function(x){return x.src});if(!l.length)return toast('No real photos yet. Add some first 📷');l.forEach(function(x,i){setTimeout(function(){dlOne(x)},i*400)});toast('Downloading '+l.length+' photos ⬇️')},
+ book:function(){S.books.push({cap:C().id,at:Date.now()});save();toast('Added to the photo-book waitlist 📖')},
+ share:function(){var d={title:C().name,text:'Our memories from '+C().name,url:location.href.split('#')[0]};if(navigator.share)navigator.share(d).catch(function(){});else toast('Shared!')},
+ play:function(){var l=glist(C()).slice(0,8),i=0,n=l.length||1;clearInterval(pt);function s(){var x=l[i%n],v=$('vd');if(!v){clearInterval(pt);return}v.style.backgroundImage=x&&x.src?'url('+x.src+')':gradient(x?x.g:i);$('vt').textContent=(i===n-1?'See you next time ❤️ ':'')+'Memory '+(i+1)+(x?' · '+x.by:'');$('pb').style.width=Math.round((i+1)/n*100)+'%';if(i>=n-1)clearInterval(pt);i++}s();pt=setInterval(s,2200)}};
+bind(document.querySelector('nav'));
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0)navigator.serviceWorker.register('sw.js').catch(function(){});
+go('home');
 </script></body></html>
